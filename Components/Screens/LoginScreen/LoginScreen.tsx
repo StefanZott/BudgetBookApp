@@ -1,13 +1,23 @@
+// _________________________________________________________________________________________________________________
+// |                                                                                                               |
+// |                                              Imports                                                          |
+// |_______________________________________________________________________________________________________________|
+// -----------------------------------------------Library-----------------------------------------------------------
 import React, { useEffect, useState } from 'react';
 import { TouchableOpacity, Text, TextInput, View, Image } from 'react-native';
 
+// ------------------------------------------Custom Library---------------------------------------------------------
+import { RootStackParams } from '../../../Components/Navigation/AppNavigator';
+import { signIn } from '../../Firebase/Firebase';
+
+// -----------------------------------------------Style-------------------------------------------------------------
 import Styles from './LoginScreen.style';
 
-import { RootStackParams } from '../../../Components/Navigation/AppNavigator';
+// ---------------------------------------------Navigation----------------------------------------------------------
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useTheme } from '@react-navigation/native';
 
-type Props = NativeStackScreenProps<RootStackParams, 'Login'>
+type Props = NativeStackScreenProps<RootStackParams, 'Login'>;
 
 const LoginScreen = ({route, navigation}: Props) => {
     const [eMail, setEmail] = useState<string>('');
@@ -25,6 +35,12 @@ const LoginScreen = ({route, navigation}: Props) => {
                 setHideContainer(false);
             }
         }
+    }
+
+    async function executeSignIn() {
+        console.log('EVENT: LoginScreen -> Transmit E-Mail and Password to Firebase DB. E-Mail: ' + eMail + ', Password: ' + password);
+        let newUid: string | unknown = await signIn(eMail, password);
+        console.log('EVENT: LoginScreen -> Firebase DB send UID back: ' + newUid);
     }
     
     useEffect(() => {

@@ -50,7 +50,30 @@ Android Studio Jellyfish 2023.3.1
       <td>react-native-safe-area-context</td>
       <td>4.10.1</td>
     </tr>
+    <tr>
+      <td>React Native Firebase App</td>
+      <td>@react-native-firebase/app</td>
+      <td>20.0.0</td>
+    </tr>
+    <tr>
+      <td>React Native Firebase Auth</td>
+      <td>@react-native-firebase/auth</td>
+      <td>20.0.0</td>
+    </tr>
+    <tr>
+      <td>React Native Firebase Firestore</td>
+      <td>@react-native-firebase/firestore</td>
+      <td>20.0.0</td>
+    </tr>
   </tbody>
 </table>
 
-## Updates
+## Firebase
+
+1. google-services.json generieren
+  1. Projektübersicht -> Einstellungen
+  2. Auf den Tab Allgemein klicken
+  3. Abschnitt "Meine Apps"
+  4. Dann "App hinzufügen"
+  5. Danach die google-services.json downloaden
+2. Die Datei im Projektverzeichnis unter android->app kopieren

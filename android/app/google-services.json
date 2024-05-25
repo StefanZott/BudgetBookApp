@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "78974963788",
+    "project_id": "finanzapp-f07d7",
+    "storage_bucket": "finanzapp-f07d7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:78974963788:android:9b22daadcd523b1cbf64e9",
+        "android_client_info": {
+          "package_name": "com.budgetbookapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "78974963788-p1d2r89q1ntohh3ee9apeo48snackai9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACZ-YJVjuox_2OVizqWL7uffV_ee-61GY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "78974963788-p1d2r89q1ntohh3ee9apeo48snackai9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
