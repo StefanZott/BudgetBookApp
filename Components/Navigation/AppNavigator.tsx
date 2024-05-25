@@ -11,6 +11,7 @@ import { NavigatorScreenParams, NavigationContainer } from "@react-navigation/na
 // -----------------------------------------------Screens-----------------------------------------------------------
 import StartScreen from "../Screens/StartScreen/StartScreen";
 import LoginScreen from "../Screens/LoginScreen/LoginScreen";
+import RegisterScreen from "../Screens/RegisterScreen/RegisterScreen";
 
 // _________________________________________________________________________________________________________________
 // |                                                                                                               |
@@ -19,6 +20,7 @@ import LoginScreen from "../Screens/LoginScreen/LoginScreen";
 export type RootStackParams = {
     Start: undefined;
     Login: undefined;
+    Register: undefined;
 }
 
 const RootStack = createNativeStackNavigator<RootStackParams>()
@@ -44,6 +46,15 @@ const RootNavigator = () => {
                     }}
                     listeners={() => ({
                         focus: () => console.log('EVENT: RootNavigator -> Open Login Screen')
+                    })} />
+                <RootStack.Screen
+                    name='Register'
+                    component={RegisterScreen}
+                    options={{
+                        headerShown: false
+                    }}
+                    listeners={() => ({
+                        focus: () => console.log('EVENT: RootNavigator -> Open Register Screen')
                     })} />
             </RootStack.Navigator>
         </NavigationContainer>
