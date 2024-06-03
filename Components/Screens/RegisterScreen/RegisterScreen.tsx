@@ -6,6 +6,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { TouchableOpacity, Text, TextInput, View, Image } from 'react-native';
 
+// ------------------------------------------Custom Library---------------------------------------------------------
+import { createUser } from '../../Firebase/Firebase';
+
 // ---------------------------------------------Navigation----------------------------------------------------------
 import { RootStackParams } from '../../../Components/Navigation/AppNavigator';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -54,7 +57,7 @@ const RegisterScreen = ({route, navigation}: Props) => {
                     style={Styles.textInput}
                     placeholder='Passwort...'
                     onChangeText={newText => setPassword(newText)} />
-                <TouchableOpacity style={Styles.registerBtn} >
+                <TouchableOpacity style={Styles.registerBtn} onPress={() => createUser(email,password,firstName,lastName)}>
                     <Text style={Styles.registerBtnText}>Registrieren</Text>
                 </TouchableOpacity >
             </View>

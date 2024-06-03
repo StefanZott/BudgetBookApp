@@ -1,4 +1,4 @@
-package com.budgetbookapp
+package com.zottIt.budgetBookApp
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

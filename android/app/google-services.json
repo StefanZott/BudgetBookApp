@@ -9,7 +9,36 @@
       "client_info": {
         "mobilesdk_app_id": "1:78974963788:android:9b22daadcd523b1cbf64e9",
         "android_client_info": {
-          "package_name": "com.budgetbookapp"
+          "package_name": "com.finance_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "78974963788-p1d2r89q1ntohh3ee9apeo48snackai9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACZ-YJVjuox_2OVizqWL7uffV_ee-61GY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "78974963788-p1d2r89q1ntohh3ee9apeo48snackai9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:78974963788:android:1ed23473c1a34eadbf64e9",
+        "android_client_info": {
+          "package_name": "com.zottIt.budgetBookApp"
         }
       },
       "oauth_client": [

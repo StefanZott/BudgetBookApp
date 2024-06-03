@@ -77,9 +77,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.budgetbookapp"
+    namespace "com.zottIt.budgetBookApp"
     defaultConfig {
-        applicationId "com.budgetbookapp"
+        applicationId "com.zottIt.budgetBookApp"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

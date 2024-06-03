@@ -7,13 +7,13 @@ import React, { useEffect, useState } from 'react';
 import { TouchableOpacity, Text, TextInput, View, Image } from 'react-native';
 
 // ------------------------------------------Custom Library---------------------------------------------------------
-import { RootStackParams } from '../../../Components/Navigation/AppNavigator';
 import { signIn } from '../../Firebase/Firebase';
 
 // -----------------------------------------------Style-------------------------------------------------------------
 import Styles from './LoginScreen.style';
 
 // ---------------------------------------------Navigation----------------------------------------------------------
+import { RootStackParams } from '../../../Components/Navigation/AppNavigator';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useTheme } from '@react-navigation/native';
 
