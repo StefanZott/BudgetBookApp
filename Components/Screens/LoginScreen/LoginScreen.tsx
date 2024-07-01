@@ -16,6 +16,7 @@ import Styles from './LoginScreen.style';
 import { RootStackParams } from '../../../Components/Navigation/AppNavigator';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useTheme } from '@react-navigation/native';
+import { useUidContentContext } from '../../Context/UIDcontext';
 
 type Props = NativeStackScreenProps<RootStackParams, 'Login'>;
 
@@ -24,6 +25,7 @@ const LoginScreen = ({route, navigation}: Props) => {
     const [password, setPassword] = useState<string>('');
     const { colors, dark } = useTheme();
     const [hideConatiner, setHideContainer] = useState<boolean>(false);
+    const {uid, setUID} = useUidContentContext();
 
     function checkSreenHight(layout: any) {
         if (layout != undefined) {
@@ -39,8 +41,15 @@ const LoginScreen = ({route, navigation}: Props) => {
 
     async function executeSignIn() {
         console.log('EVENT: LoginScreen -> Transmit E-Mail and Password to Firebase DB. E-Mail: ' + eMail + ', Password: ' + password);
-        let newUid: string | unknown = await signIn(eMail, password);
+        let newUid: string = await signIn(eMail, password);
         console.log('EVENT: LoginScreen -> Firebase DB send UID back: ' + newUid);
+
+        if (newUid !== null && newUid !== undefined) {
+            setUID(newUid);
+            navigation.navigate('AppStack');
+            setEmail('');
+            setPassword('');
+        }
     }
     
     useEffect(() => {

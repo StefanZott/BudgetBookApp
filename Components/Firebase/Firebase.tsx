@@ -7,21 +7,28 @@ import React, { useState, Component } from 'react';
 
 // ------------------------------------------Custom Library---------------------------------------------------------
 import AlertDialog from '../Alert/AlertDialog';
+import NewsFeeds from '../Newsfeeds/Newsfeeds';
 
 // ---------------------------------------------Firestore-----------------------------------------------------------
-import { initializeApp } from "firebase/app";
+import { initializeApp } from "firebase/app"; // Import the functions you need from the SDKs you need
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyB7z23TY9LYa0nfcTPVeHFv_Uv30Sn6nZ4",
-    authDomain: "finanzapp-f07d7.firebaseapp.com",
-    projectId: "finanzapp-f07d7",
-    storageBucket: "finanzapp-f07d7.appspot.com",
-    messagingSenderId: "78974963788",
-    appId: "1:78974963788:web:65039fcbe4b78ed2bf64e9"
-  };
+  apiKey: "AIzaSyB7z23TY9LYa0nfcTPVeHFv_Uv30Sn6nZ4",
+  authDomain: "finanzapp-f07d7.firebaseapp.com",
+  projectId: "finanzapp-f07d7",
+  storageBucket: "finanzapp-f07d7.appspot.com",
+  messagingSenderId: "78974963788",
+  appId: "1:78974963788:web:b1f5f63036a42251bf64e9"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
 /**
  * 
@@ -30,9 +37,6 @@ const firebaseConfig = {
  * @returns uid from user
  */
 export async function signIn(email: string, password: string) {
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    
     if (email != null && password != null && email !== "" && password !== "") {
         return await new Promise((resolve, reject) => {
             auth()
@@ -93,4 +97,40 @@ export async function createUser(email: string, password: string, firstName: str
     }
 
     return false;
+}
+
+/**
+ * @returns send all News back
+ */
+export async function getNews() {
+    let arrayOfNews = new Array();
+    let keyValue = 0;
+
+    await firestore()
+        .collection('News')
+        .get()
+        .then(querySnapshot => {
+            console.log('EVENT: Firebase -> Load News!');
+            querySnapshot.forEach(documentSnapshot => {
+                arrayOfNews.push(
+                    <NewsFeeds key={keyValue} id={documentSnapshot.id} title={documentSnapshot.data()["title"]} text={documentSnapshot.data()["text"]} />
+                )
+                keyValue++
+            });
+        });
+    
+    return arrayOfNews;
+}
+
+export async function signOut() {
+    return await new Promise((resolve, reject) => {
+        auth()
+            .signOut()
+            .then(() => {
+                console.log('EVENR: Firebase -> User sign out!');
+                resolve(true);
+            }).catch(() => {
+                resolve(false);
+            })
+    })
 }
