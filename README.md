@@ -1,79 +1,126 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Budget Book App
 
-# Getting Started
+## Beschreibung
+Mit dieser App soll es dem User möglich sein, seine Einnahmen und Ausgaben zu kontrollieren. 
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## Voraussetzungen  
+```
+NodeJs:        v20.13.1
+React:         v18.2.0
+React Native:  v0.74.1
+TypeScript:    v5.0.4
+JDK:           v11.0.23
 
-## Step 1: Start the Metro Server
-
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
-
-To start Metro, run the following command from the _root_ of your React Native project:
-
-```bash
-# using npm
-npm start
-
-# OR using Yarn
-yarn start
+VS code
+Android Studio Jellyfish 2023.3.1
 ```
 
-## Step 2: Start your Application
+## Zusätzliche Packete
+<table>
+  <thead>
+    <tr>
+      <th>Packet</th>
+      <th>Command</th>
+      <th>Version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>React Navigation Stack</td>
+      <td>@react-navigation/stack</td>
+      <td>6.3.29</td>
+    </tr>
+    <tr>
+      <td>React Navigation Native Stack</td>
+      <td>@react-navigation/native-stack</td>
+      <td>6.9.26</td>
+    </tr>
+    <tr>
+      <td>React Navigation Bottom Tabs</td>
+      <td>@react-navigation/bottom-tabs</td>
+      <td>6.5.20</td>
+    </tr>
+    <tr>
+      <td>React Navigation Native</td>
+      <td>@react-navigation/native</td>
+      <td>6.1.17</td>
+    </tr>
+    <tr>
+      <td>React Native Screens</td>
+      <td>react-native-screens</td>
+      <td>3.31.1</td>
+    </tr>
+    <tr>
+      <td>React Native Safe Area Context</td>
+      <td>react-native-safe-area-context</td>
+      <td>4.10.1</td>
+    </tr>
+    <tr>
+      <td>React Native Firebase App</td>
+      <td>@react-native-firebase/app</td>
+      <td>20.0.0</td>
+    </tr>
+    <tr>
+      <td>React Native Firebase Auth</td>
+      <td>@react-native-firebase/auth</td>
+      <td>20.0.0</td>
+    </tr>
+    <tr>
+      <td>React Native Firebase Firestore</td>
+      <td>@react-native-firebase/firestore</td>
+      <td>20.0.0</td>
+    </tr>
+    <tr>
+      <td>React Native Firebase </td>
+      <td>firestore</td>
+      <td>10.12.2</td>
+    </tr>
+  </tbody>
+</table>
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+## Firebase
+1. google-services.json generieren
+  1. Projektübersicht -> Einstellungen
+  2. Auf den Tab Allgemein klicken
+  3. Abschnitt "Meine Apps"
+  4. Dann "App hinzufügen"
+  5. Danach die google-services.json downloaden
+2. Die Datei im Projektverzeichnis unter android->app kopieren
 
-### For Android
-
-```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
-```
-
-### For iOS
-
-```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
-
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+## Vector Icons
+Link: https://www.npmjs.com/package/react-native-vector-icons
+Install Command: npm i react-native-vector-icons or npm i --save react-native-vector-icons
+## Implemenation iOS
+1. Copy folder Fonts from node_modules/react-native-vector-icons/ to ROOT/ios/<Project_Name>
+2. Copy this code in ROOT/ios/<Project_Name>/info.plist:
+<key>UIAppFonts</key>
+<array>
+    <string>AntDesign.ttf</string>
+    <string>Entypo.ttf</string>
+    <string>EvilIcons.ttf</string>
+    <string>Feather.ttf</string>
+    <string>FontAwesome.ttf</string>
+    <string>FontAwesome5_Brands.ttf</string>
+    <string>FontAwesome5_Regular.ttf</string>
+    <string>FontAwesome5_Solid.ttf</string>
+    <string>Foundation.ttf</string>
+    <string>Ionicons.ttf</string>
+    <string>MaterialCommunityIcons.ttf</string>
+    <string>MaterialIcons.ttf</string>
+    <string>Octicons.ttf</string>
+    <string>SimpleLineIcons.ttf</string>
+    <string>Zocial.ttf</string>
+    <string>Fontisto.ttf</string>
+</array>
+3. Create a new File with the name "reatc-native.config.js" in root layer
+## Implementation android
+1. Add code in andriod/app/build.grandle:
+    apply from: file("../../node_modules/react-native-vector-icons/fonts.gradle")
+2. Add code in andriod/settings.grandle:
+    include ':react-native-vector-icons'
+    project(':react-native-vector-icons').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-vector-icons/android')
+3. Add code in andriod/app/build.grandle to dependencies:
+    implementation project(':react-native-vector-icons')
+4. Folgende Zeilen in der MainApplication.kt hinzufügen:
+   1. import com.oblador.vectoricons.VectorIconsPackage;
+   2. add(VectorIconsPackage()) in der PackageList ergänzen 

@@ -1,0 +1,24 @@
+{
+    "DE": {
+        "menu_language": "Sprache",
+        "About": "Über",
+        "DarkMode": "DarkMode",
+        "Imprint": "Impressum",
+        "language": "Deutsch",
+        "firstName": "Vorname",
+        "lastName": "Nachname",
+        "password": "Passwort",
+        "email": "E-Mail"
+    },
+    "GB": {
+        "menu_language": "Language",
+        "About": "About",
+        "DarkMode": "DarkMode",
+        "Imprint": "Imprint",
+        "language": "English",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "password": "Password",
+        "email": "E-Mail"
+    }
+}
