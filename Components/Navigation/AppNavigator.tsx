@@ -21,7 +21,8 @@ import DefaultTheme from '../DarkMode/DefaultTheme';
 import DarkTheme from '../DarkMode/DarkTheme';
 
 // ---------------------------------------------Translation----------------------------------------------------------
-import { CountryCodeContext } from '../Context/i18nContext';
+import { useCountryCodeContext, CountryCodeContext } from '../Context/i18nContext';
+import * as RNLocalize from "react-native-localize";
 
 // -----------------------------------------------Screens-----------------------------------------------------------
 import StartScreen from "../Screens/StartScreen/StartScreen";
@@ -48,47 +49,50 @@ const RootStack = createNativeStackNavigator<RootStackParams>()
 const RootNavigator = () => {
     const [uid, setUID] = useState<string>('');
     const [isDarkTheme, setDarkTheme] = useState<boolean>(false);
+    const [countryCode, setCountryCode] = useState<string>(RNLocalize.getLocales()[0].countryCode.toString());
 
     return (
         <DarkModeContext.Provider value={{ isDarkTheme, setDarkTheme }}>
             <UidContentContext.Provider value={{ uid, setUID }}>
-                <NavigationContainer>
-                    <RootStack.Navigator initialRouteName='Start'>
-                        <RootStack.Screen
-                            name='Start'
-                            component={StartScreen}
-                            options={{
-                                headerShown: false
-                            }}
-                            listeners={() => ({
-                                focus: () => console.log('EVENT: RootNavigator -> Open Start Screen')
-                            })} />
-                        <RootStack.Screen
-                            name='Login'
-                            component={LoginScreen}
-                            options={{
-                                headerShown: false
-                            }}
-                            listeners={() => ({
-                                focus: () => console.log('EVENT: RootNavigator -> Open Login Screen')
-                            })} />
-                        <RootStack.Screen
-                            name='Register'
-                            component={RegisterScreen}
-                            options={{
-                                headerShown: false
-                            }}
-                            listeners={() => ({
-                                focus: () => console.log('EVENT: RootNavigator -> Open Register Screen')
-                            })} />
-                        <RootStack.Screen
-                            name='AppStack'
-                            component={AppRootStack}
-                            options={{
-                                headerShown: false
-                            }}/>
-                    </RootStack.Navigator>
-                </NavigationContainer>
+                <CountryCodeContext.Provider value={{ countryCode, setCountryCode }}>
+                    <NavigationContainer>
+                        <RootStack.Navigator initialRouteName='Start'>
+                            <RootStack.Screen
+                                name='Start'
+                                component={StartScreen}
+                                options={{
+                                    headerShown: false
+                                }}
+                                listeners={() => ({
+                                    focus: () => console.log('EVENT: RootNavigator -> Open Start Screen')
+                                })} />
+                            <RootStack.Screen
+                                name='Login'
+                                component={LoginScreen}
+                                options={{
+                                    headerShown: false
+                                }}
+                                listeners={() => ({
+                                    focus: () => console.log('EVENT: RootNavigator -> Open Login Screen')
+                                })} />
+                            <RootStack.Screen
+                                name='Register'
+                                component={RegisterScreen}
+                                options={{
+                                    headerShown: false
+                                }}
+                                listeners={() => ({
+                                    focus: () => console.log('EVENT: RootNavigator -> Open Register Screen')
+                                })} />
+                            <RootStack.Screen
+                                name='AppStack'
+                                component={AppRootStack}
+                                options={{
+                                    headerShown: false
+                                }}/>
+                        </RootStack.Navigator>
+                    </NavigationContainer>
+                </CountryCodeContext.Provider>
             </UidContentContext.Provider>
         </DarkModeContext.Provider>
     )

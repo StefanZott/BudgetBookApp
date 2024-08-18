@@ -6,7 +6,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import Styles from './SettingsScreen.styles'
 
-import i18n from '../../../Components/i18n/Translation.json';
+import {i18n} from '../../../Components/i18n/Translate';
 import { signOut } from '../../Firebase/Firebase';
 import AlertDialog from '../../../Components/Alert/AlertDialog';
 
@@ -46,15 +46,15 @@ const Settings = ({route, navigation}: Props) => {
                 <Text style={[Styles.menuText, {color: colors.text, width: '100%'}]} onPress={() => { navigation.navigate('Profile') }}>Proflie</Text>
             </View>
             <View style={[Styles.menuItem, {borderColor: colors.border}]} >
-                <Text style={[Styles.menuText, { color: colors.text }]}>{i18n[countryCode]['menu_language']}</Text>
-                <Text style={[Styles.menuText, { color: colors.text }]} onPress={() => { console.log('EVENT: SettingsScreen -> Open LanguageSelection Screen'), navigation.navigate('LanguageSelection') }}>{i18n[countryCode]['language']}</Text>
+                <Text style={[Styles.menuText, { color: colors.text }]}>{i18n(countryCode,'menu_language')}</Text>
+                <Text style={[Styles.menuText, { color: colors.text }]} onPress={() => { console.log('EVENT: SettingsScreen -> Open LanguageSelection Screen'), navigation.navigate('LanguageSelection') }}>{i18n(countryCode, 'language')}</Text>
             </View>
             <View style={[Styles.menuItem, { borderColor: colors.border }]}>
                 <Text style={[Styles.menuText, {color: colors.text}]}>{"Version"}</Text>
                 <Text style={[Styles.menuText, {color: colors.text}]}>{"0.0.1"}</Text>
             </View>
             <View style={[Styles.menuItem, { borderColor: colors.border }]}>
-                <Text style={[Styles.menuText, {color: colors.text}]}>{i18n[countryCode]['DarkMode']}</Text>
+                <Text style={[Styles.menuText, {color: colors.text}]}>{i18n(countryCode, 'DarkMode')}</Text>
                 <Switch
                     value={isDarkTheme}
                     onValueChange={(value) => switchTheme(value)}
@@ -64,7 +64,7 @@ const Settings = ({route, navigation}: Props) => {
                 />
             </View>
             <View style={[Styles.menuItem, { borderColor: colors.border }]}>
-                <Text style={[Styles.menuText, {color: colors.text, width: '100%'}]} onPress={() => { console.log('EVENT: SettingsScreen -> Open ImprintScreen Screen'), navigation.navigate('Imprint') }}>{i18n[countryCode]['Imprint']}</Text>
+                <Text style={[Styles.menuText, {color: colors.text, width: '100%'}]} onPress={() => { console.log('EVENT: SettingsScreen -> Open ImprintScreen Screen'), navigation.navigate('Imprint') }}>{i18n(countryCode, 'Imprint')}</Text>
             </View>
             <View style={[Styles.menuItem, { borderColor: colors.border }]}>
                 <Text style={[Styles.menuText, {color: colors.text, width: '100%'}]} onPress={() => { executeLogout() }}>Logout</Text>
