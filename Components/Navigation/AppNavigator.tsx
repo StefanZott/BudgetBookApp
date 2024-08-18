@@ -30,6 +30,7 @@ import LoginScreen from "../Screens/LoginScreen/LoginScreen";
 import RegisterScreen from "../Screens/RegisterScreen/RegisterScreen";
 import HomeScreen from '../Screens/HomeScreen/HomeScreen';
 import SettingsScreen from '../Screens/SettingsScreen/SettingsScreen';
+import ImprintScreen from '../Screens/ImprintScreen/ImprintScreen';
 
 import { UidContentContext } from '../Context/UIDcontext';
 
@@ -163,7 +164,8 @@ const AppRootStack = () => {
                         return <TouchableOpacity style={Styles.tabBarButton} onPress={() => navigation.navigate('SettingsStack', {screen: 'Settings'})}>
                             <Icons name="settings-sharp" size={35} color="white" />
                         </TouchableOpacity>
-                    }
+                    },
+                    tabBarStyle: { display: 'none' }
                 })}
                 listeners={() => ({
                     focus: () => console.log('EVENT: AppStackNavigator -> Open FinanceOverview Screen')
@@ -209,6 +211,24 @@ const SettingsStack = () => {
                     },
                     headerTintColor: 'white',
                     headerBackVisible: false
+                })}
+                listeners={() => ({
+                    focus: () => console.log('EVENT: SettingsStackNavigator -> Open Settings Screen')
+                })} />
+            <SettingsStackNavigator.Screen name='Imprint'
+                component={ImprintScreen}
+                options={({ navigation }) => ({
+                    unmountOnBlur: true,
+                    headerTitleAlign: 'center',
+                    headerStyle: {
+                        backgroundColor: BASE_COLOR
+                    },
+                    headerTitleStyle: {
+                        color: 'white'
+                    },
+                    headerTintColor: 'white',
+                    headerBackVisible: true,
+
                 })}
                 listeners={() => ({
                     focus: () => console.log('EVENT: SettingsStackNavigator -> Open Settings Screen')
