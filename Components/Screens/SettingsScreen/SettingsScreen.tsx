@@ -1,10 +1,12 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Switch, Text, View } from 'react-native';
 
 import { useNavigation, useRoute, useTheme } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import Styles from './SettingsScreen.styles'
+
+import { getAppVersion } from '../../Firebase/Firebase'; 
 
 import {i18n} from '../../../Components/i18n/Translate';
 import { signOut } from '../../Firebase/Firebase';
@@ -20,6 +22,7 @@ const Settings = ({route, navigation}: Props) => {
     const { isDarkTheme, setDarkTheme } = useDarkModeContext();
     const { countryCode } = useCountryCodeContext();
     const { colors } = useTheme();
+    const [version, setVersion] = useState<string>();
 
     async function executeLogout() {
         if (await signOut()) {
@@ -37,7 +40,12 @@ const Settings = ({route, navigation}: Props) => {
     }
     
     useEffect(() => {
+        async function fetchData() {
+            const data = await getAppVersion();
+            setVersion(data)
+        }
         console.log('EVENT: SettingsScreen -> Renderer Screen with params: countryCode = ' + countryCode);
+        fetchData()
 	}, [])
 
     return (
@@ -51,7 +59,7 @@ const Settings = ({route, navigation}: Props) => {
             </View>
             <View style={[Styles.menuItem, { borderColor: colors.border }]}>
                 <Text style={[Styles.menuText, {color: colors.text}]}>{"Version"}</Text>
-                <Text style={[Styles.menuText, {color: colors.text}]}>{"0.0.1"}</Text>
+                <Text style={[Styles.menuText, {color: colors.text}]}>{version}</Text>
             </View>
             <View style={[Styles.menuItem, { borderColor: colors.border }]}>
                 <Text style={[Styles.menuText, {color: colors.text}]}>{i18n(countryCode, 'DarkMode')}</Text>

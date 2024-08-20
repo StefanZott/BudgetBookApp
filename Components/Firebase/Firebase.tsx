@@ -13,6 +13,7 @@ import NewsFeeds from '../Newsfeeds/Newsfeeds';
 import { initializeApp } from "firebase/app"; // Import the functions you need from the SDKs you need
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
+import { DocumentData } from 'firebase/firestore';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -133,4 +134,9 @@ export async function signOut() {
                 resolve(false);
             })
     })
+}
+
+export async function getAppVersion() {
+        let data = (await firestore().collection('App').doc('Meta').get()).data();
+        return data["Version"];
 }
