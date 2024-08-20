@@ -4,7 +4,7 @@
 // |_______________________________________________________________________________________________________________|
 // -----------------------------------------------Library-----------------------------------------------------------
 import { useEffect, useState } from 'react';
-import { TouchableOpacity } from 'react-native';
+import { Button, TouchableOpacity } from 'react-native';
 import { BASE_COLOR } from "../Configuration/Config";
 import Styles from './AppNavigator.style';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -31,6 +31,7 @@ import RegisterScreen from "../Screens/RegisterScreen/RegisterScreen";
 import HomeScreen from '../Screens/HomeScreen/HomeScreen';
 import SettingsScreen from '../Screens/SettingsScreen/SettingsScreen';
 import ImprintScreen from '../Screens/ImprintScreen/ImprintScreen';
+import LanguageSelectionScreen from '../Screens/LanguageSelectionScreen/LanguageSelectionScreen';
 
 import { UidContentContext } from '../Context/UIDcontext';
 
@@ -56,7 +57,8 @@ const RootNavigator = () => {
         <DarkModeContext.Provider value={{ isDarkTheme, setDarkTheme }}>
             <UidContentContext.Provider value={{ uid, setUID }}>
                 <CountryCodeContext.Provider value={{ countryCode, setCountryCode }}>
-                    <NavigationContainer>
+                    <NavigationContainer
+                        theme={isDarkTheme ? DarkTheme : DefaultTheme}>
                         <RootStack.Navigator initialRouteName='Start'>
                             <RootStack.Screen
                                 name='Start'
@@ -164,8 +166,7 @@ const AppRootStack = () => {
                         return <TouchableOpacity style={Styles.tabBarButton} onPress={() => navigation.navigate('SettingsStack', {screen: 'Settings'})}>
                             <Icons name="settings-sharp" size={35} color="white" />
                         </TouchableOpacity>
-                    },
-                    tabBarStyle: { display: 'none' }
+                    }
                 })}
                 listeners={() => ({
                     focus: () => console.log('EVENT: AppStackNavigator -> Open FinanceOverview Screen')
@@ -209,8 +210,7 @@ const SettingsStack = () => {
                     headerTitleStyle: {
                         color: 'white'
                     },
-                    headerTintColor: 'white',
-                    headerBackVisible: false
+                    headerTintColor: 'white'
                 })}
                 listeners={() => ({
                     focus: () => console.log('EVENT: SettingsStackNavigator -> Open Settings Screen')
@@ -227,11 +227,27 @@ const SettingsStack = () => {
                         color: 'white'
                     },
                     headerTintColor: 'white',
-                    headerBackVisible: true,
-
+                    headerBackVisible: true
                 })}
                 listeners={() => ({
-                    focus: () => console.log('EVENT: SettingsStackNavigator -> Open Settings Screen')
+                    focus: () => console.log('EVENT: SettingsStackNavigator -> Open Imprint Screen')
+                })} />
+            <SettingsStackNavigator.Screen name='LanguageSelection'
+                component={LanguageSelectionScreen}
+                options={({ navigation }) => ({
+                    unmountOnBlur: true,
+                    headerTitleAlign: 'center',
+                    headerStyle: {
+                        backgroundColor: BASE_COLOR
+                    },
+                    headerTitleStyle: {
+                        color: 'white'
+                    },
+                    headerTintColor: 'white',
+                    headerBackVisible: true
+                })}
+                listeners={() => ({
+                    focus: () => console.log('EVENT: SettingsStackNavigator -> Open LanguageSelectionScreen Screen')
                 })} />
         </SettingsStackNavigator.Navigator>
     )
