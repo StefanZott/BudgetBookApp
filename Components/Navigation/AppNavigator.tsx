@@ -9,11 +9,13 @@ import { BASE_COLOR } from "../Configuration/Config";
 import Styles from './AppNavigator.style';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Icons from 'react-native-vector-icons/Ionicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 // ---------------------------------------------Navigation----------------------------------------------------------
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigatorScreenParams, NavigationContainer, useNavigation, useRoute } from "@react-navigation/native";
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 // -----------------------------------------------DarkMode----------------------------------------------------------
 import { DarkModeContext } from '../Context/DarkModeContext';
@@ -32,8 +34,45 @@ import HomeScreen from '../Screens/HomeScreen/HomeScreen';
 import SettingsScreen from '../Screens/SettingsScreen/SettingsScreen';
 import ImprintScreen from '../Screens/ImprintScreen/ImprintScreen';
 import LanguageSelectionScreen from '../Screens/LanguageSelectionScreen/LanguageSelectionScreen';
+import ProfileScreen from '../Screens/ProfilScreen/ProfileScreen';
+import FinanceOverviewScreen from '../Screens/FinaceOverviewScreen/FinanceOverview';
 
 import { UidContentContext } from '../Context/UIDcontext';
+
+// _________________________________________________________________________________________________________________
+// |                                                                                                               |
+// |                                              FinanceStack                                                     |
+// |_______________________________________________________________________________________________________________|
+export type FinanceStackParams = {
+    FinanceOverview: undefined;
+}
+
+const FinanceStackNavigator = createDrawerNavigator<FinanceStackParams>();
+const FinanceStack = () => {
+    const navigation = useNavigation();
+    const route = useRoute();
+    console.log('EVENT: FinanceStack -> Refresh himself');
+
+    useEffect(() => {
+        return () => console.log("EVENT: FinanceStack -> Unmounting himself")
+    }, [])
+
+    return (
+        <FinanceStackNavigator.Navigator
+            initialRouteName='FinanceOverview'
+            screenOptions={{
+                headerShown: false,
+                drawerActiveBackgroundColor: BASE_COLOR,
+                drawerActiveTintColor: 'white'
+            }}
+        >
+            <FinanceStackNavigator.Screen name='FinanceOverview'
+                component={FinanceOverviewScreen}
+            />
+        </FinanceStackNavigator.Navigator> 
+    )
+}
+
 
 // _________________________________________________________________________________________________________________
 // |                                                                                                               |
@@ -108,6 +147,7 @@ const RootNavigator = () => {
 
 export type AppStackParams = {
     Home: undefined;
+    FinanceStack: NavigatorScreenParams<FinanceStackParams>;
     SettingsStack: NavigatorScreenParams<SettingsStackParams>;
 }
 
@@ -157,6 +197,21 @@ const AppRootStack = () => {
                 listeners={() => ({
                     focus: () => console.log('EVENT: AppStackNavigator -> Open Home Screen')
                 })}/>
+            <AppStack.Screen name='FinanceStack'
+                component={FinanceStack}
+                options={({ navigation }) => ({
+                    title: 'Finanzen',
+                    unmountOnBlur: true,
+                    headerShown: false,
+                    tabBarButton: (props) => {
+                        return <TouchableOpacity style={Styles.tabBarButton} onPress={() => navigation.navigate('FinanceStack', {screen: 'FinanceOverviewScreen'})}>
+                            <MaterialCommunityIcons name="finance" size={35} color="white" />
+                        </TouchableOpacity>
+                    }
+                })}
+                listeners={() => ({
+                    focus: () => console.log('EVENT: AppStackNavigator -> Open FinanceOverview Screen')
+                })} />
             <AppStack.Screen name='SettingsStack'
                 component={SettingsStack}
                 options={({ navigation }) => ({
@@ -248,6 +303,23 @@ const SettingsStack = () => {
                 })}
                 listeners={() => ({
                     focus: () => console.log('EVENT: SettingsStackNavigator -> Open LanguageSelectionScreen Screen')
+                })} />
+            <SettingsStackNavigator.Screen name='Profile'
+                component={ProfileScreen}
+                options={({ navigation }) => ({
+                    unmountOnBlur: true,
+                    headerTitleAlign: 'center',
+                    headerStyle: {
+                        backgroundColor: BASE_COLOR
+                    },
+                    headerTitleStyle: {
+                        color: 'white'
+                    },
+                    headerTintColor: 'white',
+                    headerBackVisible: true
+                })}
+                listeners={() => ({
+                    focus: () => console.log('EVENT: SettingsStackNavigator -> Open ProfilScreen')
                 })} />
         </SettingsStackNavigator.Navigator>
     )

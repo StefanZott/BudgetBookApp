@@ -140,3 +140,20 @@ export async function getAppVersion() {
         let data = (await firestore().collection('App').doc('Meta').get()).data();
         return data["Version"];
 }
+
+export async function getUserInfo(uid: string) {
+    let doc = await firestore().collection('User').doc(uid).get();
+    let user = doc.data();
+
+    return user;
+}
+
+export async function getData(uid: string) {
+    let doc = await firestore().collection('User').doc(uid).get();
+    let data = doc.data();
+
+    let test: string = JSON.stringify(data['data']);
+    let testJSON: JSON = JSON.parse(test);
+
+    return test.length <= 2 ? null : testJSON;
+}
